@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store IP Address</title>
+    <style>
+        .animated-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .animated-button:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <button class="animated-button" onclick="storeIpAddress()">Click Me</button>
+
+    <script>
+        function storeIpAddress() {
+            fetch('/store_ip/', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert('IP Address Stored Successfully');
+                } else {
+                    alert('Failed to Store IP Address');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
